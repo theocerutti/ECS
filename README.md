@@ -37,7 +37,7 @@ void TestSystem::update(double deltaTime)
 
 struct TestComponent : ECS::ECSComponent<TestComponent> {
     /*
-     * Really important. Your components must always have a defaulted Component!
+     * Default constructor
      */
     TestComponent() = default;
 
