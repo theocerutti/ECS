@@ -46,7 +46,7 @@ bool ECS::System::isRegisterable(const EntityHandle *entity) const
         return (false);
     if (entity) {
         const ComponentArray &components = entity->second;
-        std::vector<EntityID> entitySignature(components.size());
+        std::vector<EntityID> entitySignature;
 
         if (components.empty())
             return (false);
