@@ -46,14 +46,16 @@ bool ECS::System::isRegisterable(const EntityHandle *entity) const
         return (false);
     if (entity) {
         const ComponentArray &components = entity->second;
-        std::vector<EntityID> entitySignature;
+        std::vector<ComponentID> entitySignature;
 
         if (components.empty())
             return (false);
         for (const std::shared_ptr<BaseComponent> &compo : components)
             entitySignature.push_back(compo->getID());
-        for (const EntityID &id : entitySignature) {
-            if (std::find(_registeredComponentIDs.begin(), _registeredComponentIDs.end(), id) == _registeredComponentIDs.end())
+        if (entitySignature.size() < _registeredComponentIDs.size())
+            return (false);
+        for (const ComponentID &id : _registeredComponentIDs) {
+            if (std::find(entitySignature.begin(), entitySignature.end(), id) == entitySignature.end())
                 return (false);
         }
     } else
