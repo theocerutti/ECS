@@ -7,15 +7,11 @@
 
 #include "ecs/engine/Engine.h"
 
-ECS::Engine::Engine()
-{
-}
-
 const ECS::EntityID ECS::Engine::createEntity()
 {
     EntityID id = ECS::Entity::nextID();
 
-    _entities.insert(EntityHandle{id, ComponentArray()});
+    _entities.emplace(id, ComponentArray());
     return (id);
 }
 

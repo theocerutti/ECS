@@ -19,9 +19,10 @@ struct TestComponent : ECS::ECSComponent<TestComponent> {
     /*
      * 'Custom' constructor
      */
-    TestComponent(int x, int y) : x(x), y(y) {}
+    TestComponent(int x, int y, int z) : x(x), y(y), z(z) {}
     int x{0};
     int y{0};
+    int z{0};
 };
 
 #endif //INDIESTUDIO_TESTCOMPONENT_H

@@ -20,7 +20,7 @@ namespace ECS {
         /*
          * Engine constructor
          */
-        explicit Engine();
+        Engine() = default;
 
         /*
          * Create entity and returns its id
@@ -103,10 +103,10 @@ namespace ECS {
         /*
          * Create system
          */
-        template<typename SystemType>
-        SystemType *createSystem()
+        template<typename SystemType, typename ...ctorSystemTArgs>
+        SystemType *createSystem(ctorSystemTArgs... ctorSystemArgs)
         {
-            _systems.push_back(std::make_unique<SystemType>(this));
+            _systems.push_back(std::make_unique<SystemType>(this, std::forward<ctorSystemTArgs>(ctorSystemArgs)...));
             for (EntityHandle &entity : _entities) {
                 if (_systems.back()->isRegisterable(&entity))
                     _systems.back()->registerEntity(&entity);

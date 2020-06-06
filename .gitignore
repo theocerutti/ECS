@@ -6,3 +6,4 @@ CMakeFiles
 .vs/
 .vscode/
 Makefile
+*.cbp
